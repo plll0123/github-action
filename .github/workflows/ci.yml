@@ -28,7 +28,7 @@ jobs:
 
       - name: print
         run: |
-          echo "${{secret_value}}"
+          echo "${{secret_key}}"
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
