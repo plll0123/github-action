@@ -21,9 +21,14 @@ jobs:
 
       - name: Set up JDK 17
         uses: actions/setup-java@v3
+
         with:
           java-version: "17"
           distribution: "temurin"
+
+      - name: print
+        run: |
+          echo "${{ secrets.secret_key }}"
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
