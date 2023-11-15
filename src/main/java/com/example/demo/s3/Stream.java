@@ -18,6 +18,5 @@ public class Stream {
 		final AmazonS3 amazonS3 = s3ClientSimple.amazonS3("1", "2");
 		amazonS3.putObject(null);
 
-		MultipartFile;
 	}
 }
