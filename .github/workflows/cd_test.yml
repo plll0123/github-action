@@ -49,15 +49,17 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.EC2_HOST }}
-          username: peter
+          username: ${{ secrets.NAME }}
+          password: ${{ secrets.PWD }}
           key: ${{ secrets.SECRET_KEY }}
+          port: ${{ secrets.PORT }}
           script: |
-            docker rm -f $(docker ps -qa)
-            docker rmi ${{ secrets.DOCKER_USERNAME }}/도커 레파지토리 이름
-            docker pull ${{ secrets.DOCKER_USERNAME }}/도커 레파지토리 이름
-            docker-compose up -d
-
-        aws-region: ap-northeast-2
+            cd /home/peter/selector
+            containers=$(docker ps -qa)
+            if [ -n "$containers" ]; then
+              docker rm -f $containers
+            fi
+            docker pull ${{ secrets.DOCKER_HUB_REPO }}/test
 #      - name: Add GitHub IP to AWS
 #        run: |
 #          aws ec2 authorize-security-group-ingress --group-id ${{ secrets.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
