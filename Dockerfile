@@ -4,4 +4,4 @@ ARG NAMEZ
 
 ENV NAME=${NAMEZ}
 
-ENTRYPOINT ["java", "-jar"]
+ENTRYPOINT ["java", "-jar", "/build/libs/*.jar"]
